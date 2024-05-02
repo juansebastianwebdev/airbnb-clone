@@ -10,7 +10,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import React, { useEffect } from "react";
 
 export default function AddressRoute() {
   const { getAllCountries } = useCountries();
