@@ -1,5 +1,7 @@
 "use client";
 
+import { createLocation } from "@/app/actions";
+import CreationButton from "@/app/components/CreationButton";
 import { useCountries } from "@/app/lib/getCountries";
 import {
   Select,
@@ -10,9 +12,18 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Skeleton } from "@/components/ui/skeleton";
+import dynamic from "next/dynamic";
+import { useState } from "react";
 
-export default function AddressRoute() {
+export default function AddressRoute({ params }: { params: { id: string } }) {
   const { getAllCountries } = useCountries();
+  const [locationValue, setLocationValue] = useState("");
+
+  const LazyMap = dynamic(() => import("@/app/components/Map"), {
+    ssr: false,
+    loading: () => <Skeleton className="h-[50vh] w-full" />,
+  });
 
   return (
     <>
@@ -22,19 +33,21 @@ export default function AddressRoute() {
         </h2>
       </div>
 
-      <form action="">
-        <div className="w-3/5 mx-auto mb-36">
+      <form action={createLocation}>
+        <input type="hidden" name="homeId" value={params.id} />
+        <input type="hidden" name="countryValue" value={locationValue} />
+        <div className="w-3/5 mx-auto mb-44">
           <div className="mb-5">
-            <Select required>
+            <Select required onValueChange={(value) => setLocationValue(value)}>
               <SelectTrigger className="w-full">
                 <SelectValue placeholder="Select a Country" />
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
                   <SelectLabel>Countries</SelectLabel>
-                  {getAllCountries().map((countries: any) => (
+                  {getAllCountries().map((countries) => (
                     <SelectItem key={countries.value} value={countries.value}>
-                      <div className="flex items-center gap-x-1">
+                      <div className="flex items-center gap-x-2">
                         <div>{countries.flag}</div>
                         <div className="font-medium flex gap-x-1">
                           {countries.label},
@@ -49,7 +62,11 @@ export default function AddressRoute() {
               </SelectContent>
             </Select>
           </div>
+
+          <LazyMap locationValue={locationValue} />
         </div>
+
+        <CreationButton />
       </form>
     </>
   );
