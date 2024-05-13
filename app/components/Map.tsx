@@ -4,6 +4,7 @@ import { MapContainer, TileLayer, Marker } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { useCountries } from "../lib/getCountries";
 import { icon } from "leaflet";
+
 export default function Map({ locationValue }: { locationValue: string }) {
   const { getCountryByValue } = useCountries();
   const latLang = getCountryByValue(locationValue)?.latLang;

@@ -12,6 +12,7 @@ import {
   Input,
   Link,
 } from "@nextui-org/react";
+
 export default function ModalRegister() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import DesktopLogo from "@/public/images/airbnb-desktop.png";
-import MobileLogo from "@/public/images/airbnb-mobile.webp";
+import MobileLogo from "@/public/images/airbnb-mobile.png";
 import SearchNav from "./SearchNav";
 import { UserNav } from "./UserNav";
 
