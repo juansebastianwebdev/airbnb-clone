@@ -63,7 +63,7 @@ export default async function HomeRoute({
       <h1 className="font-medium text-2xl text-[#ff385c] mb-5">
         {data?.title}
       </h1>
-      <div className="relative h-[500px]">
+      <div className="relative h-[300px] lg:h-[450px]">
         <Image
           src={`https://azmboyaymbixlhjcawky.supabase.co/storage/v1/object/public/images/${data?.photo}`}
           alt="Image of Home"
@@ -72,8 +72,8 @@ export default async function HomeRoute({
           priority
         />
       </div>
-      <div className="flex justify-between gap-x-24 mt-8">
-        <div className="w-2/3">
+      <div className="flex flex-col justify-center lg:flex-row lg:justify-between gap-x-24 mt-8">
+        <div className="w-2/3 flex flex-col justify-center">
           <h3 className="text-xl font-medium">
             {country?.flag} {country?.label}, {country?.region}
           </h3>
