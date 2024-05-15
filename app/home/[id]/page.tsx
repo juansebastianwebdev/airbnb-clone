@@ -59,7 +59,7 @@ export default async function HomeRoute({
   const user = await getUser();
 
   return (
-    <div className="w-[70%] mx-auto mt-10 mb-12">
+    <div className="w-[90%] lg:w-[70%] mx-auto mt-10 mb-12">
       <h1 className="font-medium text-2xl text-[#ff385c] mb-5">
         {data?.title}
       </h1>
@@ -73,11 +73,11 @@ export default async function HomeRoute({
         />
       </div>
       <div className="flex flex-col justify-center lg:flex-row lg:justify-between gap-x-24 mt-8">
-        <div className="w-2/3 flex flex-col justify-center">
+        <div className="w-full lg:w-2/3 ">
           <h3 className="text-xl font-medium">
             {country?.flag} {country?.label}, {country?.region}
           </h3>
-          <div className="flex items-center gap-x-2 text-muted-foreground">
+          <div className="flex items-center gap-x-1 lg:gap-x-2 text-muted-foreground">
             <p>{data?.guests} Guests</p> <VscDebugBreakpointLog />{" "}
             <p>{data?.bedrooms} Bedrooms</p> <VscDebugBreakpointLog />{" "}
             {data?.bathrooms} Bathrooms
@@ -108,14 +108,14 @@ export default async function HomeRoute({
 
           <HomeMap locationValue={country?.value as string} />
         </div>
-        <form action={createReservation}>
+        <form action={createReservation} className="flex flex-col items-center">
           <input type="hidden" name="homeId" value={params.id} />
           <input type="hidden" name="userId" value={user?.id} />
           <SelectCalender reservation={data?.Reservation} />
           {user?.id ? (
             <ReservationSubmitButton />
           ) : (
-            <Button className="w-full" asChild>
+            <Button className="w-[80%] lg:w-full" asChild>
               <Link href="/api/auth/login">Make a Reservation</Link>
             </Button>
           )}
