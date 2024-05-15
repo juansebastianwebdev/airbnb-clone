@@ -7,7 +7,7 @@ interface iAppProps{
 
 export default function NoItmes({description, title} : iAppProps) {
   return (
-    <div className="flex flex-col items-center justify-center h-[100vh] rounded-md border border-dashed p-8 text-center animate-in fade-in-50 mt-10 mb-6">
+    <div className="flex flex-col items-center justify-center h-[550px] rounded-md border border-dashed p-8 text-center animate-in fade-in-50 mt-10 mb-6">
       <div className="flex h-20 w-20 items-center justify-center rounded-full bg-[#ff385c]/30">
         <MdOutlineSubtitlesOff className="h-10 w-10 text-[#ff385c]" />
       </div>
